@@ -27,13 +27,13 @@ const returnString = function (str, range, add) {
   if (str.length >= range) {
     return str;
   }
-  let neededLength = range - str.length;
+  let spaceLength = range - str.length;
   let unitedString = '';
-  while (unitedString.length < neededLength) {
-    if (neededLength.length - unitedString.length >= add.length) {
+  while (unitedString.length < spaceLength) {
+    if (spaceLength.length - unitedString.length >= add.length) {
       unitedString = add + unitedString;
     } else {
-      unitedString = add.slice(0, neededLength - unitedString.length) + unitedString;
+      unitedString = add.slice(0, spaceLength - unitedString.length) + unitedString;
     }
   }
   return unitedString + str;
