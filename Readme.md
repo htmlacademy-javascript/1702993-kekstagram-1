@@ -1,6 +1,6 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Денис Швырев](https://up.htmlacademy.ru/javascript-individual/1/user/1702993).
+* Студент: [Денис Швырев Андреевич](https://up.htmlacademy.ru/javascript-individual/1/user/1702993).
 * Наставник: `Виктория Никитина module-task1`.
 
 ---
