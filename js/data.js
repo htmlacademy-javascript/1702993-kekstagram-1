@@ -1,3 +1,5 @@
+import {getRandomInteger, getRandomArrayElement} from './util.js';
+let arrayPictures = [];
 const PICTURES_COUNT = 25;
 const COMMENTS = [
   'Всё отлично!',
@@ -73,10 +75,10 @@ const createPicture = (i) => ({
 });
 
 const getPicture = function (pictureCount) {
-  let arrayPictures = [];
   for (let i = 1; i <= pictureCount; i++) {
     arrayPictures.push(createPicture(getUniqueId()));
   }
-  return arrayPictures;
 };
 getPicture(PICTURES_COUNT);
+
+export {arrayPictures};
