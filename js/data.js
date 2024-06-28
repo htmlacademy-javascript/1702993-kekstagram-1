@@ -1,6 +1,5 @@
 import {getRandomInteger, getRandomArrayElement} from './util.js';
-let arrayPictures = [];
-const PICTURES_COUNT = 25;
+export const PICTURES_COUNT = 25;
 const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -38,7 +37,7 @@ const getUniqueRange = (min, max) => {
     }
     previousValues.push(value);
     return value;
-  }
+  };
 };
 
 const getUniqueId = getUniqueRange(1, 25);
@@ -47,7 +46,7 @@ const getUniqueComment = function (min, max) {
   let arr = [];
   for (let i = 0; i < max; i++) {
     arr += getRandomArrayElement(COMMENTS);
-  };
+  }
   return arr;
 };
 const createComment = () => ({
@@ -75,10 +74,10 @@ const createPicture = (i) => ({
 });
 
 const getPicture = function (pictureCount) {
+  const arrayPictures = [];
   for (let i = 1; i <= pictureCount; i++) {
     arrayPictures.push(createPicture(getUniqueId()));
   }
+  return arrayPictures;
 };
-getPicture(PICTURES_COUNT);
-
-export {arrayPictures};
+export const arrayPic = getPicture(PICTURES_COUNT);
