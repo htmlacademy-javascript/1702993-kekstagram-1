@@ -1,4 +1,5 @@
-import {arrayPictures} from './data.js';
+import './data.js';
+// import {arrayPic} from './data.js';
 import './function.js';
+import './mini.js';
 
-console.log(arrayPictures);
