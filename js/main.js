@@ -1,5 +1,5 @@
-import './data.js';
-// import {arrayPic} from './data.js';
-import './function.js';
-import './mini.js';
+import { arrayPic } from './data.js';
+import { renderMini } from './mini.js';
+import './popup.js';
 
+renderMini(arrayPic);

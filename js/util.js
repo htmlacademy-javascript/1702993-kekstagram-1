@@ -7,5 +7,8 @@ const getRandomInteger = (a, b) => {
 };
 // случайный эллемент массива
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomArrayElement};
+export {getRandomInteger, getRandomArrayElement, isEscapeKey};
+
+
