@@ -42,17 +42,10 @@ const getUniqueRange = (min, max) => {
 
 const getUniqueId = getUniqueRange(1, 25);
 const getUniqueIdComment = getUniqueRange(1, 1000);
-const getUniqueComment = function (min, max) {
-  let arr = [];
-  for (let i = 0; i < max; i++) {
-    arr += getRandomArrayElement(COMMENTS);
-  }
-  return arr;
-};
 const createComment = () => ({
   id: getUniqueIdComment(),
   avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-  message: getUniqueComment(1, getRandomInteger(0, 2)),
+  message: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(NAMES),
 });
 
@@ -69,7 +62,7 @@ const createPicture = (i) => ({
   url: `photos/${i}.jpg`,
   likes: getRandomInteger(15, 200),
   description: getRandomArrayElement(DESCRIPTIONS),
-  comments: createComments(getRandomInteger(0, 10))
+  comments: createComments(getRandomInteger(0, 30))
 
 });
 
