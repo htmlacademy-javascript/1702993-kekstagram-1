@@ -39,7 +39,7 @@ const renderLoader = () => {
 
 const renderStatistic = () => {
   commentsCount.innerHTML = `${rendredComments} из <span class="comments-count">${totalComments}</span> комментариев`
-}
+};
 
 function renderComments() {
   const commentFragment = document.createDocumentFragment();
@@ -79,6 +79,6 @@ function closePopup() {
 
 commentsLoader.addEventListener('click', () => {
   renderComments();
-})
+});
 
 export { openPopup };
