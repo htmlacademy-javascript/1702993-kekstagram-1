@@ -1,59 +1,60 @@
-const buttonModalShow = document.querySelector('.img-upload__label');
+import { isValid } from './validation.js';
+import { isEscapeKey } from './util.js';
+import { pristine } from './validation.js';
+
 const imgForm = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
 const imgButtonClose = document.querySelector('.img-upload__cancel');
 const form = document.querySelector('.img-upload__form');
-const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
-const MAX_HASHTAGS_LENGTH = 5;
-const hashtagField = document.querySelector('.text__hashtags');
-const errorMassege = 'НЕПРАВИЛЬНО ЗАПОЛНЕНА ФОРМА';
+const uploadInputElement = document.querySelector('.img-upload__input');
+const tagField = document.querySelector('.text__hashtags');
+const commentField = document.querySelector('.text__description');
 
-buttonModalShow.addEventListener('click', function () {
-  imgForm.classList.remove('hidden');
-  body.classList.add('modal-open');
-});
-
-imgButtonClose.addEventListener('click', function () {
+const closeImageForm = () => {
   imgForm.classList.add('hidden');
   body.classList.remove('modal-open');
+  form.reset();
+  pristine.reset();
+};
+const closeKeyDownEsc = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeImageForm();
+  }
+};
+const openImageForm = () => {
+  imgForm.classList.remove('hidden');
+  body.classList.add('modal-open');
+  document.addEventListener('keydown', closeKeyDownEsc);
+};
+
+uploadInputElement.addEventListener('change', () => {
+  openImageForm();
 });
 
-const pristine = new Pristine(form, {
-  classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'hashtag-error'
+imgButtonClose.addEventListener('click', () => {
+  closeImageForm();
 });
 
-form.addEventListener('submit', function (evt) {
-  evt.preventDefault();
-  const isValid = pristine.validate();
-  if (isValid) {
-    console.log('Валидна')
+tagField.addEventListener('focus', () => {
+  document.removeEventListener('keydown', closeKeyDownEsc);
+});
+tagField.addEventListener('blur', () => {
+  document.addEventListener('keydown', closeKeyDownEsc);
+});
+commentField.addEventListener('focus', () => {
+  document.removeEventListener('keydown', closeKeyDownEsc);
+});
+commentField.addEventListener('blur', () => {
+  document.addEventListener('keydown', closeKeyDownEsc);
+});
+
+form.addEventListener('submit', (evt) => {
+  if (isValid()) {
+    console.log('Валидна');
+    return true;
   } else {
-    console.log('Не валидна')
+    evt.preventDefault();
+    console.log('Не валидна');
   }
 });
-
-const isCountHashtags = function (hashtags) {
-  hashtags <= MAX_HASHTAGS_LENGTH;
-};
-
-const isUniqTags = function (hashtags) {
-  const lowerCaseHashtag = hashtags.map((tag) => tag.toLowerCase());
-  return lowerCaseHashtag.length = new Set(lowerCaseHashtag).size;
-};
-
-const isValidTag = function (hashtags) {
-  VALID_SYMBOLS.test(hashtags);
-};
-
-const validateTags = (value) => {
-  const tags = value.trim().split(' ').filter((tag) => tag.trim().length);
-  return validCountHashtags(tags) && isUniqTags(tags) && tags.every(isValidTag);
-};
-
-pristine.addValidator(
-  hashtagField,
-  validateTags,
-  errorMassege
-);
