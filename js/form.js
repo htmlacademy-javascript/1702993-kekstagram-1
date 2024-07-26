@@ -51,10 +51,10 @@ commentField.addEventListener('blur', () => {
 
 form.addEventListener('submit', (evt) => {
   if (isValid()) {
-    console.log('Валидна');
+    console.log('Форма валидна');
     return true;
   } else {
     evt.preventDefault();
-    console.log('Не валидна');
+    console.log('Форма не валидна');
   }
 });
