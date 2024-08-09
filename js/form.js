@@ -1,6 +1,8 @@
 import { isValid } from './validation.js';
 import { isEscapeKey } from './util.js';
 import { pristine } from './validation.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const imgForm = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
@@ -11,15 +13,22 @@ const tagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 
 const closeImageForm = () => {
+  resetScale();
+  resetEffects();
   imgForm.classList.add('hidden');
   body.classList.remove('modal-open');
   form.reset();
   pristine.reset();
+  document.removeEventListener('keydown', closeKeyDownEsc);
 };
+
 const closeKeyDownEsc = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeImageForm();
+    if (document.activeElement !== tagField && document.activeElement !== commentField) {
+      closeImageForm();
+    }
+
   }
 };
 const openImageForm = () => {
@@ -36,25 +45,10 @@ imgButtonClose.addEventListener('click', () => {
   closeImageForm();
 });
 
-tagField.addEventListener('focus', () => {
-  document.removeEventListener('keydown', closeKeyDownEsc);
-});
-tagField.addEventListener('blur', () => {
-  document.addEventListener('keydown', closeKeyDownEsc);
-});
-commentField.addEventListener('focus', () => {
-  document.removeEventListener('keydown', closeKeyDownEsc);
-});
-commentField.addEventListener('blur', () => {
-  document.addEventListener('keydown', closeKeyDownEsc);
-});
-
 form.addEventListener('submit', (evt) => {
   if (isValid()) {
-    console.log('Форма валидна');
     return true;
   } else {
     evt.preventDefault();
-    console.log('Форма не валидна');
   }
 });
