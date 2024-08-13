@@ -20,7 +20,7 @@ const renderLoader = () => {
   }
 };
 
- const renderComments = () => {
+const renderComments = () => {
   const commentFragment = document.createDocumentFragment();
 
   localComments.splice(0, COMMENTS_STEP).forEach(({ avatar, message, name }) => {
@@ -30,13 +30,11 @@ const renderLoader = () => {
     commentElement.querySelector('.social__text').textContent = message;
     commentFragment.appendChild(commentElement);
     rendredComments++;
-    console.log(rendredComments + ' комментс');
   });
   popupComments.appendChild(commentFragment);
 
   renderLoader();
   renderStatistic();
-  console.log(rendredComments + ' После функции renderComments')
 };
 
 commentsLoader.addEventListener('click', () => {
@@ -45,11 +43,9 @@ commentsLoader.addEventListener('click', () => {
 
 export const setComments = (comments) => {
   rendredComments = 0;
-  console.log(rendredComments + ' = 0');
   totalComments = comments.length;
   localComments.length = 0;
   localComments.push(...comments.slice());
   popupComments.innerHTML = '';
   renderComments();
-  console.log(rendredComments + ' = после функций');
-}
+};

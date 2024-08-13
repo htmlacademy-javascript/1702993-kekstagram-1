@@ -1,9 +1,19 @@
-import { arrayPic } from './data.js';
 import { renderMini } from './mini.js';
 import './popup.js';
-import './form.js';
+import { setUserFormSubmit, closeImageForm } from './form.js';
 import './scale.js';
 import './effects.js';
+import { getData } from './api.js';
+import { showAlert } from './util.js';
+import { ALERT_SHOW_TIME_DATA_ERROR, DATA_ERROR_COLOR } from './constants.js';
 
-renderMini(arrayPic);
+getData()
+  .then((data) => {
+    renderMini(data);
+  })
+  .catch((err) => {
+    showAlert(err.message, ALERT_SHOW_TIME_DATA_ERROR, DATA_ERROR_COLOR);
+  });
 
+
+setUserFormSubmit(closeImageForm);

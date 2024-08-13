@@ -1,63 +1,14 @@
-const EFFECTS = [
-  {
-    name: 'none',
-    style: 'none',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: ''
-  },
-  {
-    name: 'chrome',
-    style: 'grayscale',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: ''
-  },
-  {
-    name: 'sepia',
-    style: 'sepia',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: ''
-  },
-  {
-    name: 'marvin',
-    style: 'invert',
-    min: 0,
-    max: 100,
-    step: 1,
-    unit: '%'
-  },
-  {
-    name: 'phobos',
-    style: 'blur',
-    min: 0,
-    max: 3,
-    step: 0.1,
-    unit: 'px'
-  },
-  {
-    name: 'heat',
-    style: 'brightness',
-    min: 1,
-    max: 3,
-    step: 0.1,
-    unit: ''
-  }
-];
+import {EFFECTS} from './constants.js';
 
 const effectsContainer = document.querySelector('.img-upload__effects');
-const image = document.querySelector('.img-upload__preview');
+const image = document.querySelector('.img-upload__preview img');
 const sliderElement = document.querySelector('.effect-level__slider');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
 
-const DEFAULT__EFFECT = EFFECTS[0];
-let currentEffect = DEFAULT__EFFECT;
+const DEFAULT_EFFECT = EFFECTS[0];
+let currentEffect = DEFAULT_EFFECT;
 
-const isDefault = () => currentEffect === DEFAULT__EFFECT;
+const isDefault = () => currentEffect === DEFAULT_EFFECT;
 
 const showSlider = () => {
   sliderContainer.classList.remove('hidden');
@@ -95,7 +46,7 @@ const changeEffect = (evt) => {
 const onSliderUpdate = () => {
   const sliderValue = sliderElement.noUiSlider.get();
   if (isDefault()) {
-    image.style.filter = DEFAULT__EFFECT.style;
+    image.style.filter = DEFAULT_EFFECT.style;
   } else {
     image.style.filter = `${currentEffect.style}(${sliderValue}${currentEffect.unit})`;
   }
@@ -112,10 +63,11 @@ noUiSlider.create(sliderElement, {
 });
 
 export const resetEffects = () => {
-  currentEffect = DEFAULT__EFFECT;
+  currentEffect = DEFAULT_EFFECT;
   updateSlider();
 };
 resetEffects();
 
 effectsContainer.addEventListener('change', changeEffect);
 sliderElement.noUiSlider.on('update', onSliderUpdate);
+
