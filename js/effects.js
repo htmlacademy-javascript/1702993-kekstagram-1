@@ -70,4 +70,3 @@ resetEffects();
 
 effectsContainer.addEventListener('change', changeEffect);
 sliderElement.noUiSlider.on('update', onSliderUpdate);
-
