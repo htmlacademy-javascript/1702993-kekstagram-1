@@ -3,6 +3,7 @@ import { openPopup } from './popup.js';
 const container = document.querySelector('.pictures');
 const templateFragment = document.querySelector('#picture');
 const template = templateFragment.content.querySelector('.picture');
+const filters = document.querySelector('.img-filters');
 const localArray = [];
 
 export const renderMini = (arrayPic) => {
@@ -19,6 +20,7 @@ export const renderMini = (arrayPic) => {
     picFragment.appendChild(picItem);
   });
   container.appendChild(picFragment);
+  filters.classList.remove('img-filters--inactive');
 };
 
 container.addEventListener('click', (evt) => {
