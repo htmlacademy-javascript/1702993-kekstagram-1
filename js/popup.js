@@ -1,4 +1,4 @@
-import { isEscapeKey } from './util.js';
+import { setEscapeControl, removeEscapeControl } from './escape-control.js';
 import { setComments } from './comments.js';
 
 const popupImgContainer = document.querySelector('.big-picture__img');
@@ -10,27 +10,19 @@ const popupClose = document.querySelector('.big-picture__cancel');
 
 const closePopup = () => {
   popup.classList.add('hidden');
-  document.removeEventListener('keydown', onDocumentKeydown);
-  popupClose.removeEventListener('click', closePopup);
 };
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault;
-    popup.classList.add('hidden');
-    closePopup();
-  }
-};
+popupClose.addEventListener('click', () => {
+  closePopup();
+  removeEscapeControl();
+});
 
 const openPopup = ({ url, likes, comments, description }) => {
   popup.classList.remove('hidden');
-  popupClose.addEventListener('click', closePopup);
-
-  document.addEventListener('keydown', onDocumentKeydown);
   popupImg.src = url;
   popupLikes.textContent = likes;
   popupDescription.textContent = description;
-
+  setEscapeControl(closePopup)
   setComments(comments);
 };
 

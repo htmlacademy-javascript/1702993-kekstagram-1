@@ -1,6 +1,6 @@
 import { renderMini } from './mini.js';
 import './popup.js';
-import { setUserFormSubmit, closeImageForm } from './form.js';
+import './form.js';
 import './scale.js';
 import './effects.js';
 import { getData } from './api.js';
@@ -16,4 +16,5 @@ getData()
   });
 
 
-setUserFormSubmit(closeImageForm);
+// setUserFormSubmit(closeImageForm);
+

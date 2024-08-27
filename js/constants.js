@@ -67,3 +67,8 @@ export {
   ALERT_SHOW_TIME, ALERT_SHOW_TIME_DATA_ERROR,
   VALID_ERROR_COLLOR, DATA_ERROR_COLOR
 };
+
+export const SubmitButtonText = {
+  NORMAL: 'Опубликовать',
+  SENDING: 'Отправка...'
+};
