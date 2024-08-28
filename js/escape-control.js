@@ -10,7 +10,6 @@ const onDocumentEscape = (evt) => {
       return;
     }
     stack[index].closeFn();
-    console.log(stack);
     stack.length = stack.length - 1;
 
     if (!stack.length) {

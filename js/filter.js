@@ -1,33 +1,34 @@
+import { renderMini } from './mini.js';
 const imgFiltersForm = document.querySelector('.img-filters__form');
-const imgButtonDefault = document.getElementById('filter-default');
-const imgButtonRandom = document.getElementById('filter-random');
-const imgButtonDiscussed = document.getElementById('filter-discussed');
-const imgFilterButtons = document.querySelectorAll('.img-filters__button');
+const filters = document.querySelector('.img-filters');
+
+const Filters = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed'
+};
+
+let localData;
+
+const filteredData = {
+  [Filters.DEFAULT]: () => localData,
+  [Filters.RANDOM]: () => [...localData].sort(()=> Math.random() - 0.5).slice(0, 10),
+  [Filters.DISCUSSED]: () => [...localData].sort((b, a) => a.comments.length - b.comments.length),
+};
 
 const makeButtonActive = (element) => {
-  for (let i = 0; i < imgFilterButtons.length; i++) {
-    imgFilterButtons[i].className = 'img-filters__button';
-  }
+  document.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
   element.classList.add('img-filters__button--active');
 };
 
 imgFiltersForm.addEventListener('click', (evt) => {
-  if (evt.target === imgButtonDefault) {
+  if (evt.target.classList.contains('img-filters__button')) {
     makeButtonActive(evt.target);
-    console.log('Дефолтные');
-  }
-  if (evt.target === imgButtonRandom) {
-    makeButtonActive(evt.target);
-    console.log('Рандомные');
-  }
-  if (evt.target === imgButtonDiscussed) {
-    makeButtonActive(evt.target);
-    console.log('Обсуждаемые');
+    renderMini(filteredData[evt.target.id]());
   }
 });
 
-const compareMini = (comments) => {
-  for (let i = 0; i < comments.length; i++) {
-
-  }
+export const activateFilters = (pictures) => {
+  filters.classList.remove('img-filters--inactive');
+  localData = [...pictures];
 };

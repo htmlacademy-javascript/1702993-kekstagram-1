@@ -58,7 +58,7 @@ form.addEventListener('submit', (evt) => {
         removeEscapeControl();
         showSuccessMessage();
       })
-      .catch((err) => {
+      .catch(() => {
         showErrorMessage();
       })
       .finally(() => {

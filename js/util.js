@@ -75,4 +75,4 @@ function throttle (callback, delayBetweenFrames) {
     }
   };
 }
-export {getRandomInteger, getRandomArrayElement, isEscapeKey};
+export {getRandomInteger, getRandomArrayElement, isEscapeKey, debounce, throttle};
