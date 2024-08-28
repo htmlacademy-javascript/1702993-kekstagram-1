@@ -5,7 +5,7 @@ const successMessage = document.querySelector('#success')
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
 const body = document.querySelector('body');
 
-const closeSuccessMessage = () => {
+const closeSuccesMessage = () => {
   document.querySelector('.success').remove();
 };
 
@@ -15,11 +15,11 @@ const showSuccessMessage = () => {
   const buttonSuccess = document.querySelector('.success__button');
   successMassageClone.addEventListener('click', (evt) => {
     if (evt.target === buttonSuccess || evt.target.classList.contains('success')) {
-      closeSuccessMessage();
+      closeSuccesMessage();
       removeEscapeControl();
     }
   });
-  setEscapeControl(closeSuccessMessage);
+  setEscapeControl(closeSuccesMessage);
 };
 
 const closeErrorMessage = () => {
