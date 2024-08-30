@@ -1,7 +1,7 @@
 import { VALID_SYMBOLS, MAX_HASHTAGS_LENGTH } from './constants.js';
 const form = document.querySelector('.img-upload__form');
 const hashtagField = document.querySelector('.text__hashtags');
-const errorMassege = 'НЕПРАВИЛЬНЫЙ ХЕШТЕГ';
+const errorMassege = 'поле хештегов заполнено неверно';
 
 export const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
