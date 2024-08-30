@@ -24,4 +24,3 @@ export const renderPreview = () => {
     showAlert(messageError, ALERT_SHOW_TIME, ERROR_COLOR);
   }
 };
-
