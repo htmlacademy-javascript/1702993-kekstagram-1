@@ -1,7 +1,7 @@
 const BASE_URL = 'https://28.javascript.htmlacademy.pro/kekstagram';
 const Route = {
   GET_DATA: '/data',
-  SEND_DATA: '/f',
+  SEND_DATA: '/',
 };
 const ErrorText = {
   GET_DATA: 'Не удалось загрузить данные. Попробуйте обновить страницу',
@@ -34,6 +34,5 @@ const sendData = (body) => fetch(
   .catch(() => {
     throw new Error(ErrorText.SEND_DATA);
   });
-
 
 export { getData, sendData };
