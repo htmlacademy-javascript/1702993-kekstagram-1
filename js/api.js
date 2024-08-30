@@ -35,5 +35,4 @@ const sendData = (body) => fetch(
     throw new Error(ErrorText.SEND_DATA);
   });
 
-
 export { getData, sendData };

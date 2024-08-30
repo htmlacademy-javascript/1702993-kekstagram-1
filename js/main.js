@@ -4,7 +4,6 @@ import { getData } from './api.js';
 import { showAlert } from './util.js';
 import { ALERT_ERROR_TIME, ERROR_COLOR } from './constants.js';
 import './form.js';
-import './photo.js';
 
 getData()
   .then((data) => {

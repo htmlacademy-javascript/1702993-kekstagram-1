@@ -5,38 +5,25 @@ const successMessage = document.querySelector('#success')
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
 const body = document.querySelector('body');
 
-const closeSuccesMessage = () => {
-  document.querySelector('.success').remove();
+const templates = {
+  success: successMessage,
+  error: errorMessage
 };
 
-const showSuccessMessage = () => {
-  const successMassageClone = successMessage.cloneNode(true);
-  body.appendChild(successMassageClone);
-  const buttonSuccess = document.querySelector('.success__button');
-  successMassageClone.addEventListener('click', (evt) => {
-    if (evt.target === buttonSuccess || evt.target.classList.contains('success')) {
-      closeSuccesMessage();
+const closeMessage = () => {
+  const message = document.querySelector('.success') || document.querySelector('.error');
+  message.remove();
+};
+
+export const showMessage = (template = 'success') => {
+  const messageClone = templates[template].cloneNode(true);
+  body.appendChild(messageClone);
+  const button = document.querySelector(`.${template}__button`);
+  messageClone.addEventListener('click', (evt) => {
+    if (evt.target === button || evt.target.classList.contains(template)) {
+      closeMessage();
       removeEscapeControl();
     }
   });
-  setEscapeControl(closeSuccesMessage);
+  setEscapeControl(closeMessage);
 };
-
-const closeErrorMessage = () => {
-  document.querySelector('.error').remove();
-};
-
-const showErrorMessage = () => {
-  const errorMessageClone = errorMessage.cloneNode(true);
-  body.appendChild(errorMessageClone);
-  const buttonError = document.querySelector('.error__button');
-  errorMessageClone.addEventListener('click', (evt) => {
-    if (evt.target === buttonError || evt.target.classList.contains('error')) {
-      closeErrorMessage();
-      removeEscapeControl();
-    }
-  });
-  setEscapeControl(closeErrorMessage);
-};
-
-export { showSuccessMessage, showErrorMessage };

@@ -1,11 +1,12 @@
 import { isValid } from './validation.js';
-import { pristine } from './validation.js';
+import { reset as resetValidation } from './validation.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
 import { sendData } from './api.js';
 import { SubmitButtonText } from './constants.js';
-import { showSuccessMessage, showErrorMessage } from './notification.js';
+import { showMessage } from './notification.js';
 import { setEscapeControl, removeEscapeControl } from './escape-control.js';
+import { renderPreview } from './photo.js';
 
 const imgForm = document.querySelector('.img-upload__overlay');
 const imgButtonClose = document.querySelector('.img-upload__cancel');
@@ -22,7 +23,7 @@ const closeImageForm = () => {
   resetEffects();
   imgForm.classList.add('hidden');
   body.classList.remove('modal-open');
-  pristine.reset();
+  resetValidation();
 };
 
 const isActiveFields = () => document.activeElement !== tagField && document.activeElement !== commentField;
@@ -31,6 +32,7 @@ const openImageForm = () => {
   imgForm.classList.remove('hidden');
   body.classList.add('modal-open');
   setEscapeControl(closeImageForm, isActiveFields);
+  renderPreview();
 };
 
 uploadInputElement.addEventListener('change', () => {
@@ -56,10 +58,10 @@ form.addEventListener('submit', (evt) => {
       .then(() => {
         closeImageForm();
         removeEscapeControl();
-        showSuccessMessage();
+        showMessage();
       })
       .catch(() => {
-        showErrorMessage();
+        showMessage('error');
       })
       .finally(() => {
         blockSubmitButton();
