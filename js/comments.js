@@ -1,8 +1,9 @@
 import { COMMENTS_STEP } from './constants.js';
-const socialComment = document.querySelector('.social__comment');
 const commentsCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
+//исправил поиск по документ
 const popupComments = document.querySelector('.social__comments');
+const socialComment = popupComments.querySelector('.social__comment');
 
 const localComments = [];
 let totalComments;

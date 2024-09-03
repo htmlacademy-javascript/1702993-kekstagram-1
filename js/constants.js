@@ -1,7 +1,4 @@
-// const PICTURES_COUNT = 25;
-// комментарии
 const COMMENTS_STEP = 5;
-// валидация
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_HASHTAGS_LENGTH = 5;
 
