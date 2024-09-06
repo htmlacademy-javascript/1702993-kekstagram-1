@@ -1,8 +1,9 @@
 import { renderMini } from './mini.js';
 import { debounce } from './util.js';
 import { DELAY_TIMER } from './constants.js';
-const imgFiltersForm = document.querySelector('.img-filters__form');
+//исправил поиск по документ
 const filters = document.querySelector('.img-filters');
+const imgFiltersForm = filters.querySelector('.img-filters__form');
 
 const Filters = {
   DEFAULT: 'filter-default',

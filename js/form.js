@@ -8,14 +8,14 @@ import { showMessage } from './notification.js';
 import { setEscapeControl, removeEscapeControl } from './escape-control.js';
 import { renderPreview } from './photo.js';
 
-const imgForm = document.querySelector('.img-upload__overlay');
-const imgButtonClose = document.querySelector('.img-upload__cancel');
-const form = document.querySelector('.img-upload__form');
-const uploadInputElement = document.querySelector('.img-upload__input');
-const tagField = document.querySelector('.text__hashtags');
-const commentField = document.querySelector('.text__description');
-const submitButton = document.querySelector('.img-upload__submit');
 const body = document.querySelector('body');
+const form = body.querySelector('.img-upload__form');
+const imgForm = form.querySelector('.img-upload__overlay');
+const uploadInputElement = form.querySelector('.img-upload__input');
+const tagField = form.querySelector('.text__hashtags');
+const commentField = form.querySelector('.text__description');
+const imgButtonClose = form.querySelector('.img-upload__cancel');
+const submitButton = imgForm.querySelector('.img-upload__submit');
 
 const closeImageForm = () => {
   form.reset();

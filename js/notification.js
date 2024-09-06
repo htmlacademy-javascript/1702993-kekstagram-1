@@ -1,9 +1,10 @@
 import { setEscapeControl, removeEscapeControl } from './escape-control.js';
-
-const successMessage = document.querySelector('#success')
-  .content.querySelector('.success');
-const errorMessage = document.querySelector('#error').content.querySelector('.error');
+//можно ли два раза искать боди?
 const body = document.querySelector('body');
+const successMessage = body.querySelector('#success')
+  .content.querySelector('.success');
+const errorMessage = body.querySelector('#error')
+  .content.querySelector('.error');
 
 const templates = {
   success: successMessage,
