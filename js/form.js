@@ -7,7 +7,7 @@ import { SubmitButtonText } from './constants.js';
 import { showMessage } from './notification.js';
 import { setEscapeControl, removeEscapeControl } from './escape-control.js';
 import { renderPreview } from './photo.js';
-//исправил поиск по документ
+
 const body = document.querySelector('body');
 const form = body.querySelector('.img-upload__form');
 const imgForm = form.querySelector('.img-upload__overlay');
