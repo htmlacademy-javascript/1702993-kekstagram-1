@@ -1,5 +1,5 @@
 import { setEscapeControl, removeEscapeControl } from './escape-control.js';
-//можно ли два раза искать боди?
+
 const body = document.querySelector('body');
 const successMessage = body.querySelector('#success')
   .content.querySelector('.success');
